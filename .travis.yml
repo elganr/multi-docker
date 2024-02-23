@@ -14,3 +14,8 @@ after_success:
   - docker build -t erolland/multi-nginx ./nginx
   - docker build -t erolland/multi-server ./server
   - docker build -t erolland/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push erolland/multi-client
+  - docker push erolland/multi-nginx
+  - docker push erolland/multi-server
+  - docker push erolland/multi-worker
